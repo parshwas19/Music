@@ -12,8 +12,7 @@ const { eventNames } = require("./models/user");
 const cors = require("cors")
 const app = express();
 const port = 8080;  
-// app.use(cors());
-// app.use(cors({origin: 'https://stupify-music.web.app/'}));
+app.use(cors());
 app.use(express.json())
 
 
@@ -25,6 +24,7 @@ mongoose
         console.log("Connected to Mongo!");
     })
     .catch((err) => {
+        console.log(err);
         console.log("Error while connecting to Mongo");
     });
 // setup passport-jwt
