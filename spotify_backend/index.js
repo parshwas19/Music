@@ -1,8 +1,5 @@
 const express= require("express");
-
-
-
-
+require("dotenv").config();
 const JwtStrategy = require("passport-jwt").Strategy,
     ExtractJwt = require("passport-jwt").ExtractJwt;
 const passport = require("passport");
@@ -10,12 +7,11 @@ const User = require("./models/user");
 const authRoutes = require("./routes/auth");
 const songRoutes = require("./routes/song");
 const playlistRoutes = require("./routes/playlist");
-require("dotenv").config();
 const mongoose = require("mongoose");
 const { eventNames } = require("./models/user");
 const cors = require("cors")
 const app = express();
-const port = 8080;
+const port = 8080;  
 app.use(cors());
 app.use(express.json())
 
@@ -23,7 +19,7 @@ app.use(express.json())
 
 mongoose
     .connect(
-        MONGODB_URI ,
+        process.env.MONGODB_URI,
     ).then((x) => {
         console.log("Connected to Mongo!");
     })
